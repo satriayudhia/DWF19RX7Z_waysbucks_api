@@ -9,6 +9,8 @@ const {getPosts} = require('../controllers/post')
 const {getUsers, deleteUsers} = require('../controllers/users')
 //PRODUCTS
 const {getProducts, getProduct} = require('../controllers/products')
+//TOPINGS
+const {getTopings, getToping} = require('../controllers/topings')
 
 router.get('/todos', getTodos)
 router.get('/todo/:id', getTodo)
@@ -25,5 +27,7 @@ router.delete('/user/:id', deleteUsers)
 //PRODUCTS
 router.get('/products', getProducts)
 router.get('/product/:id', getProduct)
+router.get('/topings', getTopings)
+router.get('/toping/:id', getToping)
 
 module.exports = router
