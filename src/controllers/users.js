@@ -2,7 +2,7 @@ const {Users} = require('../../models')
 
 exports.getUsers = async (req, res) => {
     try {
-        const users = await Users.findAll().then(users => res.send(users))
+        const users = await Users.findAll()
 
         if(!users) {
             return res.status(400).send({

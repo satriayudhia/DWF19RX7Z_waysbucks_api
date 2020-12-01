@@ -4,7 +4,11 @@ const router = express.Router()
 
 const {getTodos, getTodo, addTodo, patchTodo, deleteTodo} = require('../controllers/todos')
 const {getPosts} = require('../controllers/post')
+
+//USERS
 const {getUsers, deleteUsers} = require('../controllers/users')
+//PRODUCTS
+const {getProducts, getProduct} = require('../controllers/products')
 
 router.get('/todos', getTodos)
 router.get('/todo/:id', getTodo)
@@ -14,8 +18,12 @@ router.delete('/todo/:id', deleteTodo)
 
 router.get('/posts', getPosts)
 
-//USER
+//USERS
 router.get('/users', getUsers)
 router.delete('/user/:id', deleteUsers)
+
+//PRODUCTS
+router.get('/products', getProducts)
+router.get('/product/:id', getProduct)
 
 module.exports = router
