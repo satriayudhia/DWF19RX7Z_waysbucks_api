@@ -8,7 +8,8 @@ const {getPosts} = require('../controllers/post')
 //USERS
 const {getUsers, deleteUsers} = require('../controllers/users')
 //PRODUCTS
-const {getProducts, getProduct} = require('../controllers/products')
+const {getProducts, getProduct, addProduct, 
+    updateProduct, deleteProduct, restoreProduct} = require('../controllers/products')
 //TOPINGS
 const {getTopings, getToping} = require('../controllers/topings')
 
@@ -27,6 +28,12 @@ router.delete('/user/:id', deleteUsers)
 //PRODUCTS
 router.get('/products', getProducts)
 router.get('/product/:id', getProduct)
+router.post('/product', addProduct)
+router.patch('/product/:id', updateProduct)
+router.delete('/product/:id', deleteProduct)
+router.post('/product/:id', restoreProduct)
+
+//TOPINGS
 router.get('/topings', getTopings)
 router.get('/toping/:id', getToping)
 
