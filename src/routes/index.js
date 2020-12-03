@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router()
 
 //USERS
-const {getUsers, deleteUsers} = require('../controllers/users')
+const {getUsers, deleteUsers} = require('../controllers/user')
 //PRODUCTS
 const {getProducts, getProduct, addProduct,
 updateProduct, deleteProduct} = require('../controllers/product')
@@ -12,6 +12,8 @@ const {getProductsTopings} = require('../controllers/productToping')
 //TOPINGS
 const {getTopings, getToping, addToping,
 updateToping, deleteToping} = require('../controllers/toping')
+//TRANSACTION
+const {getTransactions} = require('../controllers/transaction')
 
 //USERS PATH
 router.get('/users', getUsers)
@@ -35,5 +37,8 @@ router.delete('/toping/:id', deleteToping)
 
 //PRODUCTSTOPINGS PATH
 router.get('/product-toping', getProductsTopings)
+
+//TRANSACTION
+router.get('/transactions', getTransactions)
 
 module.exports = router

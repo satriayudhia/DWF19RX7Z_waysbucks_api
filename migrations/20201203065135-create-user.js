@@ -17,6 +17,16 @@ module.exports = {
       status: {
         type: Sequelize.STRING
       },
+      transactionId: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Transactions",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

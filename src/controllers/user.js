@@ -1,8 +1,8 @@
-const {Users} = require('../../models')
+const {User} = require('../../models')
 
 exports.getUsers = async (req, res) => {
     try {
-        const users = await Users.findAll()
+        const users = await User.findAll()
 
         if(!users) {
             return res.status(400).send({
@@ -29,7 +29,7 @@ exports.deleteUsers = async (req, res) => {
     try {
         // let users = await Users.findAll()
         const {id} = req.params
-        await Users.destroy({where: {id: id}}).then(user => {
+        await User.destroy({where: {id: id}}).then(user => {
             res.send({
                 status: "DELETE DATA SUCCESS",
                 user
