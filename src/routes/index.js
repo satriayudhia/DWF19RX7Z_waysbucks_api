@@ -2,44 +2,38 @@ const express = require('express')
 
 const router = express.Router()
 
-const {getTodos, getTodo, addTodo, patchTodo, deleteTodo} = require('../controllers/todos')
-const {getPosts} = require('../controllers/post')
-
 //USERS
 const {getUsers, deleteUsers} = require('../controllers/users')
 //PRODUCTS
-const {getProducts, getProduct, addProduct, 
-    updateProduct, deleteProduct, restoreProduct} = require('../controllers/products')
+const {getProducts, getProduct, addProduct,
+updateProduct, deleteProduct} = require('../controllers/product')
+//PRODUCTSTOPINGS
+const {getProductsTopings} = require('../controllers/productToping')
 //TOPINGS
-const {getTopings, getToping, addToping,
-updateToping, deleteToping, restoreToping} = require('../controllers/topings')
+// const {getTopings, getToping, addToping,
+// updateToping, deleteToping, restoreToping} = require('../controllers/topings')
 
-router.get('/todos', getTodos)
-router.get('/todo/:id', getTodo)
-router.post('/todo', addTodo)
-router.patch('/todo/:id', patchTodo)
-router.delete('/todo/:id', deleteTodo)
-
-router.get('/posts', getPosts)
-
-//USERS
+//USERS PATH
 router.get('/users', getUsers)
 router.delete('/user/:id', deleteUsers)
 
-//PRODUCTS
+//PRODUCTS PATH
 router.get('/products', getProducts)
 router.get('/product/:id', getProduct)
 router.post('/product', addProduct)
 router.patch('/product/:id', updateProduct)
 router.delete('/product/:id', deleteProduct)
-router.post('/product/:id', restoreProduct)
+// router.post('/product/:id', restoreProduct)
 
-//TOPINGS
-router.get('/topings', getTopings)
-router.get('/toping/:id', getToping)
-router.post('/toping', addToping)
-router.patch('/toping/:id', updateToping)
-router.delete('/toping/:id', deleteToping)
-router.post('/toping/:id', restoreToping)
+// //TOPINGS PATH
+// router.get('/topings', getTopings)
+// router.get('/toping/:id', getToping)
+// router.post('/toping', addToping)
+// router.patch('/toping/:id', updateToping)
+// router.delete('/toping/:id', deleteToping)
+// router.post('/toping/:id', restoreToping)
+
+//PRODUCTSTOPINGS PATH
+router.get('/product-toping', getProductsTopings)
 
 module.exports = router

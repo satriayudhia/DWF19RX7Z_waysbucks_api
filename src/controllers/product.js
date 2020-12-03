@@ -1,15 +1,15 @@
-const {Topings} = require('../../models')
+const {Product} = require('../../models')
 
-//GET ALL TOPINGS
-exports.getTopings = async (req, res) => {
+//GET ALL PRODUCTS
+exports.getProducts = async (req, res) => {
     try {
-        const topings = await Topings.findAll({
+        const products = await Product.findAll({
             attributes: {
-                exclude: ["createdAt", "updatedAt", "deletedAt"]
+                exclude: ["createdAt", "updatedAt"]
             }
         })
 
-        if(!topings) {
+        if(!products) {
             return res.status(400).send({
                 status: "data product empty",
                 data: []
@@ -18,7 +18,7 @@ exports.getTopings = async (req, res) => {
 
         res.send({
             status: "success",
-            topings
+            products
         })
     } catch (err) {
         console.log(err)
@@ -30,25 +30,25 @@ exports.getTopings = async (req, res) => {
     }
 }
 
-//GET SPECIFIC TOPING BY ID
-exports.getToping = async (req, res) => {
+//GET SPECIFIC PRODUCT BY ID
+exports.getProduct = async (req, res) => {
     try {
         const {id} = req.params
-        const toping = await Topings.findOne({where: {id},
+        const product = await Product.findOne({where: {id},
         attributes: {
-            exclude: ["createdAt", "updatedAt", "deletedAt"]
+            exclude: ["createdAt", "updatedAt"]
         }})
 
-        if(!toping) {
+        if(!product) {
             return res.status(400).send({
-                status: "data toping not found",
+                status: "data product not found",
                 data: []
             })
         }
 
         res.send({
             status: "success",
-            toping
+            product
         })
     } catch (err) {
         console.log(err)
@@ -60,15 +60,15 @@ exports.getToping = async (req, res) => {
     }
 }
 
-//ADD NEW TOPING
-exports.addToping = async (req, res) => {
+//ADD NEW PRODUCT
+exports.addProduct = async (req, res) => {
     try {
         const {body} = req
-        const toping = await Topings.create(body)
+        const product = await Product.create(body)
 
         res.send({
             status: "success",
-            toping
+            product
         })
     } catch (err) {
         console.log(err)
@@ -80,16 +80,16 @@ exports.addToping = async (req, res) => {
     }
 }
 
-//EDIT TOPING
-exports.updateToping = async (req, res) => {
+//EDIT PRODUCT
+exports.updateProduct = async (req, res) => {
     try {
         const {id} = req.params
         const {body} = req
 
-        //Cek apakah toping dengan id yg input ada
-        const checkToping = await Topings.findOne({where: {id}})
+        //Cek apakah produk dengan id yg input ada
+        const checkProduct = await Product.findOne({where: {id}})
 
-        if (!checkToping) {
+        if (!checkProduct) {
             return res.status(400).send({
               status: "data not found",
               data: {
@@ -98,13 +98,13 @@ exports.updateToping = async (req, res) => {
             });
           }
 
-        await Topings.update(body, {where: {id}})
+        await Product.update(body, {where: {id}})
 
-        const getUpdatedToping = await Topings.findOne({where: {id}})
+        const getUpdatedProduct = await Product.findOne({where: {id}})
 
         res.send({
             status: "success",
-            getUpdatedToping
+            getUpdatedProduct
         })
     } catch (err) {
         console.log(err)
@@ -116,27 +116,27 @@ exports.updateToping = async (req, res) => {
     }
 }
 
-//DELETE TOPING BY ID (SOFT DELETE)
-exports.deleteToping = async (req, res) => {
+//DELETE PRODUCT BY ID (SOFT DELETE)
+exports.deleteProduct = async (req, res) => {
     try {
         const {id} = req.params
-        const toping = await Topings.findOne({where: {id},
+        const product = await Product.findOne({where: {id},
         attributes: {
             exclude: ["createdAt", "updatedAt"]
         }})
 
-        if(!toping) {
+        if(!product) {
             return res.status(400).send({
                 status: "data product not found",
                 data: []
             })
         }
 
-        await Topings.destroy({where: {id}})
+        await Product.destroy({where: {id}})
 
         res.send({
             status: "success",
-            toping
+            product
         })
     } catch (err) {
         console.log(err)
@@ -148,22 +148,22 @@ exports.deleteToping = async (req, res) => {
     }
 }
 
-//RESTORE DELETED TOPING
-exports.restoreToping = async (req, res) => {
-    try {
-        const {id} = req.params
-        const toping = await Topings.restore({where: {id}})
+//RESTORE DELETED PRODUCT
+// exports.restoreProduct = async (req, res) => {
+//     try {
+//         const {id} = req.params
+//         const product = await Products.restore({where: {id}})
 
-        res.send({
-            status: `toping with id: ${id} successfully restored`,
-            toping
-        })
-    } catch (err) {
-        console.log(err)
-        return res.status(500).send({
-            error: {
-                status: "server error"
-            }
-        })
-    }
-}
+//         res.send({
+//             status: `product with id: ${id} successfully restored`,
+//             product
+//         })
+//     } catch (err) {
+//         console.log(err)
+//         return res.status(500).send({
+//             error: {
+//                 status: "server error"
+//             }
+//         })
+//     }
+// }
