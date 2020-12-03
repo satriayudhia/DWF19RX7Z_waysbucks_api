@@ -10,8 +10,8 @@ updateProduct, deleteProduct} = require('../controllers/product')
 //PRODUCTSTOPINGS
 const {getProductsTopings} = require('../controllers/productToping')
 //TOPINGS
-// const {getTopings, getToping, addToping,
-// updateToping, deleteToping, restoreToping} = require('../controllers/topings')
+const {getTopings, getToping, addToping,
+updateToping, deleteToping} = require('../controllers/toping')
 
 //USERS PATH
 router.get('/users', getUsers)
@@ -26,11 +26,11 @@ router.delete('/product/:id', deleteProduct)
 // router.post('/product/:id', restoreProduct)
 
 // //TOPINGS PATH
-// router.get('/topings', getTopings)
-// router.get('/toping/:id', getToping)
-// router.post('/toping', addToping)
-// router.patch('/toping/:id', updateToping)
-// router.delete('/toping/:id', deleteToping)
+router.get('/topings', getTopings)
+router.get('/toping/:id', getToping)
+router.post('/toping', addToping)
+router.patch('/toping/:id', updateToping)
+router.delete('/toping/:id', deleteToping)
 // router.post('/toping/:id', restoreToping)
 
 //PRODUCTSTOPINGS PATH
