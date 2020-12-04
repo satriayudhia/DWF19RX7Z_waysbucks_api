@@ -1,46 +1,42 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Transactions', {
+    await queryInterface.createTable('ProductTopings', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      transactionId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "User",
+          model: "Transactions",
           key: "id",
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
-      name: {
-        type: Sequelize.STRING
+      productId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Products",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
-      email: {
-        type: Sequelize.STRING
-      },
-      phone: {
-        type: Sequelize.INTEGER
-      },
-      address: {
-        type: Sequelize.STRING
-      },
-      posCode: {
-        type: Sequelize.INTEGER
-      },
-      attachment: {
-        type: Sequelize.STRING
-      },
-      status: {
-        type: Sequelize.STRING
-      },
-      income: {
-        type: Sequelize.INTEGER
+      topingId: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Topings",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       createdAt: {
         allowNull: false,
@@ -53,6 +49,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Transactions');
+    await queryInterface.dropTable('ProductTopings');
   }
 };

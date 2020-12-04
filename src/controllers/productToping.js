@@ -8,6 +8,8 @@ exports.getProductsTopings = async (req, res) => {
             },
             include: {
                 model: Toping,
+                through: {attributes: []},
+                as: "topings",
                 attributes: {
                     exclude: ["createdAt", "updatedAt"]
                 }

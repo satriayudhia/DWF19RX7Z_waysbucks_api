@@ -8,16 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      transactionId: {
-        allowNull: true,
-        type: Sequelize.INTEGER,
-        references: {
-          model: "Transactions",
-          key: "id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
-      },
       name: {
         type: Sequelize.STRING
       },

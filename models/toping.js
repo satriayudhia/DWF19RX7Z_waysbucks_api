@@ -11,11 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Toping.belongsTo(models.Product)
+      Toping.belongsToMany(models.Transaction, {
+        as: "transactions",
+        through: {
+          model: "ProductToping"
+        }
+      })
+
+      Toping.belongsToMany(models.Product, {
+        as: "topings",
+        through: {
+          model: "ProductToping"
+        }
+      })
     }
   };
   Toping.init({
-    productId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     price: DataTypes.INTEGER,
     photo: DataTypes.STRING
