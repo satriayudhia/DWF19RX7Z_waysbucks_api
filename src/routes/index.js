@@ -1,10 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const {uploadFile} = require('../middleware/upload')
+const {auth} = require('../middleware/auth')
 
 // ================= //
 // CONTROLLER IMPORT //
 // ================= //
+
+//AUTHORIZATION
+const {register, login} = require('../controllers/auth')
 
 //USERS
 const {getUsers, deleteUsers} = require('../controllers/user')
@@ -12,9 +16,6 @@ const {getUsers, deleteUsers} = require('../controllers/user')
 //PRODUCTS
 const {getProducts, getProduct, addProduct,
 updateProduct, deleteProduct} = require('../controllers/product')
-
-//PRODUCTSTOPINGS
-const {getProductsTopings} = require('../controllers/productToping')
 
 //TOPINGS
 const {getTopings, getToping, addToping,
@@ -29,6 +30,10 @@ deleteTransaction} = require('../controllers/transaction')
 // ==== //
 // PATH //
 // ==== //
+
+//AUTHORIZATION PATH
+router.post('/register', register)
+router.post('/login', login)
 
 //USERS PATH
 router.get('/users', getUsers)
@@ -49,9 +54,6 @@ router.post('/toping', addToping)
 router.patch('/toping/:id', updateToping)
 router.delete('/toping/:id', deleteToping)
 // router.post('/toping/:id', restoreToping)
-
-//PRODUCTSTOPINGS PATH
-router.get('/product-toping', getProductsTopings)
 
 //TRANSACTIONS PATH
 router.get('/transactions', getTransactions)
